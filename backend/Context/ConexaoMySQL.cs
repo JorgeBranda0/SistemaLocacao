@@ -1,3 +1,4 @@
+using backend.Models;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 
@@ -12,6 +13,10 @@ namespace backend.Context
             UserID = "root",
             Password = "P@ssw0rd"
         };
+
+        public DbSet<Clientes> Clientes { get; set; }
+        public DbSet<Filmes> Filmes { get; set; }
+        public DbSet<Locacoes> Locacoes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseMySQL(cs.ConnectionString);
