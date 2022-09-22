@@ -20,7 +20,7 @@ namespace backend.Controllers
 
         [HttpPost]
         [Route("[controller]/Cadastro")]
-        public async Task<IActionResult> CadastrarCliente([FromBody] CreateClienteDto clienteDto)
+        public async Task<IActionResult> CadastraCliente([FromBody] CreateClienteDto clienteDto)
         {
             Clientes clientes = _mapper.Map<Clientes>(clienteDto);
             _context.Clientes.Add(clientes);

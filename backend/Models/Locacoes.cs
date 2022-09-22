@@ -15,10 +15,12 @@ namespace backend.Models
         [Column("DataDevolucao")]
         public DateTime DataDevolucao { get; set; }
 
-        [ForeignKey("Id_Cliente")]
-        public virtual Clientes Id_Cliente { get; set; }
+        [ForeignKey("Id_Cliente"), Column("Id_Cliente")]
+        public int ClienteId { get; set; }
+        public virtual Clientes Cliente { get; set; }
 
-        [ForeignKey("Id_Filme")]
-        public virtual Filmes Id_Filme { get; set; }
+        [ForeignKey("Id_Filme"), Column("Id_Filme")]
+        public int FilmeId { get; set; }
+        public virtual Filmes Filme { get; set; }
     }
 }
