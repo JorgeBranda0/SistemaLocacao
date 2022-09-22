@@ -50,7 +50,7 @@ namespace backend.Controllers
         }
 
         [HttpPut]
-        [Route("[controller]/Atualiza")]
+        [Route("[controller]/Atualiza/{id}")]
         public async Task<IActionResult> AtualizaFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
         {
             Filmes filmes = _context.Filmes.FirstOrDefault(p => p.Id == id);

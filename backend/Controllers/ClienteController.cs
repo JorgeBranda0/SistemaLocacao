@@ -25,8 +25,7 @@ namespace backend.Controllers
             Clientes clientes = _mapper.Map<Clientes>(clienteDto);
             _context.Clientes.Add(clientes);
             await _context.SaveChangesAsync();
-
-            return Ok(clientes);
+            return CreatedAtAction(nameof(RecuperaClientePorId), new { Id = clientes.Id }, clientes);
         }
 
         [HttpGet]
@@ -37,7 +36,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [Route("[controller]/ConsultaPorId")]
+        [Route("[controller]/ConsultaPorId/{id}")]
         public IActionResult RecuperaClientePorId(int id)
         {
             Clientes clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
@@ -46,8 +45,39 @@ namespace backend.Controllers
                 ReadClienteDto clienteDto = _mapper.Map<ReadClienteDto>(clientes);
                 return Ok(clienteDto);
             }
-
+            
             return NotFound("Atenção! O Id do cliente que você procura não existe!");
+        }
+
+        [HttpPut]
+        [Route("[controller]/Atualiza/{id}")]
+        public async Task<IActionResult> AtualizaCliente(int id, [FromBody] UpdateClienteDto clienteDto)
+        {
+            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
+            if (clientes == null)
+            {
+                return NotFound("Atenção! O Id do cliente que você procura não existe!");
+            }
+
+            _mapper.Map(clienteDto, clientes);
+            _context.Clientes.Update(clientes);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("[controller]/Remove")]
+        public IActionResult DeletaCliente(int id)
+        {
+            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
+            if (clientes == null)
+            {
+                return NotFound("Atenção! O Id do cliente que você procura não existe!");
+            }
+
+            _context.Remove(clientes);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
