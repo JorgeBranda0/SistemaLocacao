@@ -1,4 +1,4 @@
-namespace backend.Context.Dtos
+namespace backend.Context.Dtos.FilmesDto
 {
     public class ReadFilmeDto
     {

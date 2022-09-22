@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace backend.Context.Dtos
+namespace backend.Context.Dtos.FilmesDto
 {
-    public class CreateFilmeDto
+    public class UpdateFilmeDto
     {
         [Required(ErrorMessage = "Atenção! O campo título é obrigatório")]
         public string Titulo { get; set; }

@@ -1,5 +1,5 @@
 using AutoMapper;
-using backend.Context.Dtos;
+using backend.Context.Dtos.FilmesDto;
 using backend.Models;
 
 namespace backend.Profiles

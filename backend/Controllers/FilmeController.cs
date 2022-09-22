@@ -1,6 +1,6 @@
 using AutoMapper;
 using backend.Context;
-using backend.Context.Dtos;
+using backend.Context.Dtos.FilmesDto;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -76,7 +76,7 @@ namespace backend.Controllers
             }
 
             _context.Remove(filmes);
-            _context.SaveChangesAsync();
+            _context.SaveChanges();
             return NoContent();
         }
     }

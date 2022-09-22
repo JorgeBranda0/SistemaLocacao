@@ -14,7 +14,7 @@ namespace backend.Context
             Password = "P@ssw0rd"
         };
 
-        //public DbSet<Clientes> Clientes { get; set; }
+        public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Filmes> Filmes { get; set; }
         //public DbSet<Locacoes> Locacoes { get; set; }
 

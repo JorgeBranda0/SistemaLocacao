@@ -13,9 +13,9 @@ namespace backend.Models
         public string Nome { get; set; }
 
         [Column("CPF")]
-        public int CPF { get; set; }
+        public string CPF { get; set; }
 
         [Column("DataNascimento")]
-        public DateTime DataDeNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
     }
 }   
