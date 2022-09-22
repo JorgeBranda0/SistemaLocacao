@@ -26,7 +26,28 @@ namespace backend.Controllers
             _context.Clientes.Add(clientes);
             await _context.SaveChangesAsync();
 
-            return NotFound();
+            return Ok(clientes);
+        }
+
+        [HttpGet]
+        [Route("[controller]/Consulta")]
+        public IEnumerable<Clientes> RecuperaCliente()
+        {
+            return _context.Clientes;
+        }
+
+        [HttpGet]
+        [Route("[controller]/ConsultaPorId")]
+        public IActionResult RecuperaClientePorId(int id)
+        {
+            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
+            if (clientes != null)
+            {
+                ReadClienteDto clienteDto = _mapper.Map<ReadClienteDto>(clientes);
+                return Ok(clienteDto);
+            }
+
+            return NotFound("Atenção! O Id do cliente que você procura não existe!");
         }
     }
 }
