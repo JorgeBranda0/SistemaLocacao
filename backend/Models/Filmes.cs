@@ -13,9 +13,9 @@ namespace backend.Models
         public string Titulo { get; set; }
 
         [Column("ClassificacaoIndicativa")]
-        public int Classificacao { get; set; }
+        public int Classificacao_Indicativa { get; set; }
 
         [Column("Lancamento")]
-        public byte Lancamento { get; set; }
+        public bool Lancamento { get; set; }
     }
 }

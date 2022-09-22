@@ -14,11 +14,11 @@ namespace backend.Context
             Password = "P@ssw0rd"
         };
 
-        public DbSet<Clientes> Clientes { get; set; }
+        //public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Filmes> Filmes { get; set; }
-        public DbSet<Locacoes> Locacoes { get; set; }
+        //public DbSet<Locacoes> Locacoes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseMySQL(cs.ConnectionString);
+            => optionsBuilder.UseMySql(cs.ConnectionString, ServerVersion.AutoDetect(cs.ConnectionString));
     }
 }
