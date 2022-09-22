@@ -8,10 +8,10 @@ namespace backend.Context.Dtos.LocacoesDto
         public DateTime DataLocacao { get; set; }
         public DateTime DataDevolucao { get; set; }
 
-        [Required(ErrorMessage = "Atenção! O campo Id_Cliente é obrigatório")]
-        public virtual Clientes Id_Cliente { get; set; }
+        [Required(ErrorMessage = "Atenção! O campo ClienteId é obrigatório")]
+        public int ClienteId { get; set; }
 
-        [Required(ErrorMessage = "Atenção! O campo Id_Filme é obrigatório")]
-        public virtual Filmes Id_Filme { get; set; }
+        [Required(ErrorMessage = "Atenção! O campo FilmeId é obrigatório")]
+        public int FilmeId { get; set; }
     }
 }
