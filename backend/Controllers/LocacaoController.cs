@@ -40,5 +40,19 @@ namespace backend.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpGet]
+        [Route("[controller]/Consulta")]
+        public IEnumerable<Locacoes> RecuperaLocacao()
+        {
+            var locacoes = _context.Locacoes.ToList();
+            foreach (var item in locacoes)
+            {
+                item.Cliente = _context.Clientes.FirstOrDefault(p => p.Id == item.ClienteId);
+                item.Filme = _context.Filmes.FirstOrDefault(p => p.Id == item.FilmeId);
+            }
+
+            return locacoes;
+        }
     }
 }
