@@ -98,5 +98,20 @@ namespace backend.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpDelete]
+        [Route("[controller]/Remove")]
+        public IActionResult DeletaLocacao(int id)
+        {
+            Locacoes locacoes = _context.Locacoes.FirstOrDefault(p => p.Id == id);
+            if (locacoes == null)
+            {
+                return NotFound("Atenção! O Id da Locação que você procura não existe!");
+            }
+
+            _context.Remove(locacoes);
+            _context.SaveChanges();
+            return NoContent();
+        }
     }
 }
