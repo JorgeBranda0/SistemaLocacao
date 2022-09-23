@@ -54,5 +54,20 @@ namespace backend.Controllers
 
             return locacoes;
         }
+
+        [HttpGet]
+        [Route("[controller]/ConsultaPorId/{id}")]
+        public IActionResult RecuperaLocacaoPorId(int id)
+        {
+            var locacoes = _context.Locacoes.Where(p => p.Id == id).ToList();
+            foreach (var item in locacoes)
+            {
+                item.Cliente = _context.Clientes.FirstOrDefault(p => p.Id == item.ClienteId);
+                item.Filme = _context.Filmes.FirstOrDefault(p => p.Id == item.FilmeId);
+                return Ok(locacoes);
+            }
+
+            return NotFound("Atenção! O Id da Locação que você procura não existe!");
+        }
     }
 }
