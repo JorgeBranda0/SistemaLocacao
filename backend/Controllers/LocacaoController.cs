@@ -69,5 +69,34 @@ namespace backend.Controllers
 
             return NotFound("Atenção! O Id da Locação que você procura não existe!");
         }
+
+        [HttpPut]
+        [Route("[controller]/Atualiza/{id}")]
+        public async Task<IActionResult> AtualizaLocacao(int id, [FromBody] UpdateLocacaoDto locacaoDto)
+        {
+            Locacoes locacoes = _context.Locacoes.FirstOrDefault(p => p.Id == id);
+            if (locacoes == null)
+            {
+                return NotFound("Atenção! O Id da Locação que você procura não existe!");
+            }
+
+            var cliente = _context.Clientes.Where(p => p.Id == locacaoDto.ClienteId).ToList();
+            var filme = _context.Filmes.Where(p => p.Id == locacaoDto.FilmeId).ToList();
+
+            if (cliente.Count == 0)
+            {
+                return NotFound("Atenção! O Id do cliente que você inseriu não existe!");
+            }
+
+            if (filme.Count == 0)
+            {
+                return NotFound("Atenção! O Id do filme que você inseriu não existe!");
+            }
+
+            _mapper.Map(locacaoDto, locacoes);
+            _context.Locacoes.Update(locacoes);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
