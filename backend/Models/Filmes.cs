@@ -7,7 +7,7 @@ namespace backend.Models
     public class Filmes 
     {
         [Key, Column("Id")]
-        public int Id { get; set; }
+        public int FilmeId { get; set; }
 
         [Column("Titulo")]
         public string Titulo { get; set; }

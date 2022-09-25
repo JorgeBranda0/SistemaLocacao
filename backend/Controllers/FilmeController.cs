@@ -25,7 +25,7 @@ namespace backend.Controllers
             Filmes filmes = _mapper.Map<Filmes>(filmeDto);
             _context.Filmes.Add(filmes);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(RecuperaFilmesPorId), new { Id = filmes.Id }, filmes);
+            return CreatedAtAction(nameof(RecuperaFilmesPorId), new { Id = filmes.FilmeId }, filmes);
         }
 
         [HttpGet]
@@ -39,7 +39,7 @@ namespace backend.Controllers
         [Route("[controller]/ConsultaPorId/{id}")]
         public IActionResult RecuperaFilmesPorId(int id)
         {
-            Filmes filme = _context.Filmes.FirstOrDefault(p => p.Id == id);
+            Filmes filme = _context.Filmes.FirstOrDefault(p => p.FilmeId == id);
             if (filme != null)
             {
                 ReadFilmeDto filmeDto = _mapper.Map<ReadFilmeDto>(filme);
@@ -53,7 +53,7 @@ namespace backend.Controllers
         [Route("[controller]/Atualiza/{id}")]
         public async Task<IActionResult> AtualizaFilme(int id, [FromBody] UpdateFilmeDto filmeDto)
         {
-            Filmes filmes = _context.Filmes.FirstOrDefault(p => p.Id == id);
+            Filmes filmes = _context.Filmes.FirstOrDefault(p => p.FilmeId == id);
             if (filmes == null)
             {
                 return NotFound("Atenção! O Id do filme que você procura não existe!");
@@ -69,7 +69,7 @@ namespace backend.Controllers
         [Route("[controller]/Remove")]
         public IActionResult DeletaFilme(int id)
         {
-            Filmes filmes = _context.Filmes.FirstOrDefault(p => p.Id == id);
+            Filmes filmes = _context.Filmes.FirstOrDefault(p => p.FilmeId == id);
             if (filmes == null)
             {
                 return NotFound("Atenção! O Id do filme que você procura não existe!");

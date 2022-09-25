@@ -25,7 +25,7 @@ namespace backend.Controllers
             Clientes clientes = _mapper.Map<Clientes>(clienteDto);
             _context.Clientes.Add(clientes);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(RecuperaClientePorId), new { Id = clientes.Id }, clientes);
+            return CreatedAtAction(nameof(RecuperaClientePorId), new { Id = clientes.ClienteId }, clientes);
         }
 
         [HttpGet]
@@ -39,7 +39,7 @@ namespace backend.Controllers
         [Route("[controller]/ConsultaPorId/{id}")]
         public IActionResult RecuperaClientePorId(int id)
         {
-            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
+            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.ClienteId == id);
             if (clientes != null)
             {
                 ReadClienteDto clienteDto = _mapper.Map<ReadClienteDto>(clientes);
@@ -53,7 +53,7 @@ namespace backend.Controllers
         [Route("[controller]/Atualiza/{id}")]
         public async Task<IActionResult> AtualizaCliente(int id, [FromBody] UpdateClienteDto clienteDto)
         {
-            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
+            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.ClienteId == id);
             if (clientes == null)
             {
                 return NotFound("Atenção! O Id do cliente que você procura não existe!");
@@ -69,7 +69,7 @@ namespace backend.Controllers
         [Route("[controller]/Remove")]
         public IActionResult DeletaCliente(int id)
         {
-            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.Id == id);
+            Clientes clientes = _context.Clientes.FirstOrDefault(p => p.ClienteId == id);
             if (clientes == null)
             {
                 return NotFound("Atenção! O Id do cliente que você procura não existe!");

@@ -23,8 +23,8 @@ namespace backend.Controllers
         {
             Locacoes locacoes = _mapper.Map<Locacoes>(locacaoDto);
          
-            var cliente = _context.Clientes.Where(p => p.Id == locacoes.ClienteId).ToList();
-            var filme = _context.Filmes.Where(p => p.Id == locacoes.FilmeId).ToList();
+            var cliente = _context.Clientes.Where(p => p.ClienteId == locacoes.ClienteId).ToList();
+            var filme = _context.Filmes.Where(p => p.FilmeId == locacoes.FilmeId).ToList();
 
             if (cliente.Count == 0)
             {
@@ -48,8 +48,8 @@ namespace backend.Controllers
             var locacoes = _context.Locacoes.ToList();
             foreach (var item in locacoes)
             {
-                item.Cliente = _context.Clientes.FirstOrDefault(p => p.Id == item.ClienteId);
-                item.Filme = _context.Filmes.FirstOrDefault(p => p.Id == item.FilmeId);
+                item.Cliente = _context.Clientes.FirstOrDefault(p => p.ClienteId == item.ClienteId);
+                item.Filme = _context.Filmes.FirstOrDefault(p => p.FilmeId == item.FilmeId);
             }
 
             return locacoes;
@@ -59,11 +59,11 @@ namespace backend.Controllers
         [Route("[controller]/ConsultaPorId/{id}")]
         public IActionResult RecuperaLocacaoPorId(int id)
         {
-            var locacoes = _context.Locacoes.Where(p => p.Id == id).ToList();
+            var locacoes = _context.Locacoes.Where(p => p.LocacaoId == id).ToList();
             foreach (var item in locacoes)
             {
-                item.Cliente = _context.Clientes.FirstOrDefault(p => p.Id == item.ClienteId);
-                item.Filme = _context.Filmes.FirstOrDefault(p => p.Id == item.FilmeId);
+                item.Cliente = _context.Clientes.FirstOrDefault(p => p.ClienteId == item.ClienteId);
+                item.Filme = _context.Filmes.FirstOrDefault(p => p.FilmeId == item.FilmeId);
                 return Ok(locacoes);
             }
 
@@ -74,14 +74,14 @@ namespace backend.Controllers
         [Route("[controller]/Atualiza/{id}")]
         public async Task<IActionResult> AtualizaLocacao(int id, [FromBody] UpdateLocacaoDto locacaoDto)
         {
-            Locacoes locacoes = _context.Locacoes.FirstOrDefault(p => p.Id == id);
+            Locacoes locacoes = _context.Locacoes.FirstOrDefault(p => p.LocacaoId == id);
             if (locacoes == null)
             {
                 return NotFound("Atenção! O Id da Locação que você procura não existe!");
             }
 
-            var cliente = _context.Clientes.Where(p => p.Id == locacaoDto.ClienteId).ToList();
-            var filme = _context.Filmes.Where(p => p.Id == locacaoDto.FilmeId).ToList();
+            var cliente = _context.Clientes.Where(p => p.ClienteId == locacaoDto.ClienteId).ToList();
+            var filme = _context.Filmes.Where(p => p.FilmeId == locacaoDto.FilmeId).ToList();
 
             if (cliente.Count == 0)
             {
@@ -103,7 +103,7 @@ namespace backend.Controllers
         [Route("[controller]/Remove")]
         public IActionResult DeletaLocacao(int id)
         {
-            Locacoes locacoes = _context.Locacoes.FirstOrDefault(p => p.Id == id);
+            Locacoes locacoes = _context.Locacoes.FirstOrDefault(p => p.LocacaoId == id);
             if (locacoes == null)
             {
                 return NotFound("Atenção! O Id da Locação que você procura não existe!");

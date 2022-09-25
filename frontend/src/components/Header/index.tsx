@@ -6,7 +6,7 @@ function Header() {
         <header>
             <div className="dsmeta-logo-container">
                 <img src={logo} alt="DSMeta" />
-                <h1>Prime Video</h1>
+                <h1 className="dsmeta-titulo">Prime Filmes</h1>
                 <p>
                     Desenvolvido por
                     <a href="https://github.com/JorgeBranda0"> @JorgeBranda0</a>

@@ -7,7 +7,7 @@ namespace backend.Models
     public class Clientes
     {
         [Key, Column("Id")]
-        public int Id { get; set; }
+        public int ClienteId { get; set; }
 
         [Column("Nome")]
         public string Nome { get; set; }

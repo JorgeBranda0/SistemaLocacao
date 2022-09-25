@@ -7,7 +7,7 @@ namespace backend.Models
     public class Locacoes
     {
         [Key, Column("Id")]
-        public int Id { get; set; }
+        public int LocacaoId { get; set; }
 
         [Column("DataLocacao")]
         public DateTime DataLocacao { get; set; }

@@ -12,6 +12,10 @@ header {
     align-items: center;
 }
 
+.dsmeta-titulo {
+    color: #676fff;
+}
+
 .dsmeta-logo-container img {
     width: 235px;
 }

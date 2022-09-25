@@ -26,6 +26,16 @@
     font-size: 18px;
 }
 
+.dsmeta-sales-description {
+    color: #5f6e82;
+    margin-top: -20px;
+    font-size: 12px;
+}
+
+.dsmeta-sales-hr {
+    color: #676fff;
+}
+
 .dsmeta-sales-table {
     width: 100%;
     border-spacing: 0;
